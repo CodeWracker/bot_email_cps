@@ -1,1 +1,3 @@
 teste1/config.py
+src/data/*
+src/*.xlsx
