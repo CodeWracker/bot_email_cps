@@ -12,4 +12,5 @@ def log_results(filtered,sent,failed):
     print("Passaram no filtro: "+ str(filtered))
     print("Enviados: "+ str(sent))
     print("Erro ao enviar: "+str(failed))
+    print("Os eventuais erros, por enquanto, devem ser tratados manualmente")
     log_line()
