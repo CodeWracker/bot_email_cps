@@ -129,6 +129,8 @@ def update_queue(i,data,row):
 
 #faz o filtro e se passar manda para enviar o email
 def check_valid_email(name,email,age,age_filter):
+
+    #a idade vai vir por data, tem que trabalhar esse dado
     if age<age_filter:
         print("Muito novo para receber o email")
         return 0
