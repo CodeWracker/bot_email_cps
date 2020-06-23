@@ -2,8 +2,16 @@ from utils import *
 from text_responses import *
 
 log_start_configuration()
-file_name = input("Digite o nome do arquivo excel(sem o .xlsx): ")
-[name_column, email_column, age_column,run_number] = csv_from_excel(file_name)
+caso = int(input("digite 1 para criar m caso novo e 2 para tentar um anterior"))
+if(caso==1):
+    file_name = input("Digite o nome do arquivo excel(sem o .xlsx): ")
+    [name_column, email_column, age_column,run_number] = csv_from_excel(file_name)
+else:
+    #tenho que fazer isso ser automatico
+    run_number = int(input("digite o numero da pasta que deseja utilizar: "))
+    name_column = int(input("numero da coluna de nome: "))
+    email_column = int(input("numero da coluna de email: "))
+    age_column = int(input("numero da coluna de idade: "))
 age_filter = int(input("Digite a idade minima do filtro (<): "))
 log_line()
 log_start_reading_queue()
