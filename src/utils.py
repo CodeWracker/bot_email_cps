@@ -61,13 +61,21 @@ def csv_from_excel(arq_name):
 def read_queue_data(name_column,email_column,age_column,age_filter,i):
     
     #Tenho que fazer ler do ultimo ao primeiro e ir removendo as linhas
-
+    
     filtered =0
     sent =0
     failed =0
     f = open("src/data/"+str(i)+'/queue.csv', 'r')
     reader = csv.reader(f)
-    for row in reader:
+    
+    data = []
+    for r in reader:
+        data.append(r)
+    f.close()
+    update_data = data
+    for rw in range(len(data)-1,-1,-1):
+        
+        row = data[rw]
         if(row != []):
             try:
                 name = str(row[name_column])
@@ -76,26 +84,43 @@ def read_queue_data(name_column,email_column,age_column,age_filter,i):
                 int(age)
                 print("nome: " + name + " / email: "+ email+ " / idade: "+ age)
 
-                '''
-                    Retorno:
-                    0 = Não passou no filtro
-                    1 = passou no filtro e foi enviado
-                    2 = passou no filtro e não foi enviado
-                '''
+                
+                    #Retorno:
+                    #0 = Não passou no filtro
+                    #1 = passou no filtro e foi enviado
+                    #2 = passou no filtro e não foi enviado
+                
                 response = check_valid_email(name,email, int(age), age_filter)
+                if(response==0):
+                    update_data = update_queue(i,update_data,row)
                 if(response == 1):
                     sent = sent+1
                     filtered=filtered+1
+                    update_data = update_queue(i,update_data,row)
+                            
                 if(response==2):
                     filtered=filtered+1
                     failed=failed+1
+                    update_data = update_queue(i,update_data,row)
                     add_failed_list(row,i)
-                    
+                
             except ValueError:
-                print("Arquivo aberto")
+                print("Lido!")
             print("")
-    f.close()
+    
+    
     return [filtered,sent,failed]
+
+def update_queue(i,data,row):
+    print("Removendo item da fila...")
+    file = open("src/data/"+str(i)+'/queue.csv', 'w')
+    wr = csv.writer(file, quoting=csv.QUOTE_ALL)
+    for line in data:
+        if(line !=row) and line !=[]:
+            data = list(filter(lambda item: item!=row,data))
+            wr.writerow(line)
+    file.close()
+    return data
 
 def check_valid_email(name,email,age,age_filter):
     if age<age_filter:
