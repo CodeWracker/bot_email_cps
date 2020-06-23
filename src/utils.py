@@ -72,8 +72,9 @@ def read_queue_data(name_column,email_column,age_column,age_filter,i):
                 if(response==2):
                     filtered=filtered+1
                     failed=failed+1
+                    add_failed_list(row,i)
                     
-            except:
+            except ValueError:
                 print("Arquivo aberto")
             print("")
     f.close()
@@ -85,6 +86,23 @@ def check_valid_email(name,email,age,age_filter):
         return 0
     else:
         return mail(name,email)
+
+def add_failed_list(row,i):
+    error_file = open('src/data/{}/error.csv'.format(str(i)), 'r')
+    data = []
+    rd = csv.reader(error_file)
+    for rw in rd:
+        data.append(rw)
+    data.append(row)
+    error_file.close()
+
+    error_file = open('src/data/{}/error.csv'.format(str(i)), 'w')
+    wr = csv.writer(error_file, quoting=csv.QUOTE_ALL)
+    for rw in data:
+        if(rw!=[]):
+            wr.writerow(rw)
+    error_file.close()
+    
         
     
 
