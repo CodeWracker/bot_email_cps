@@ -45,6 +45,8 @@ def csv_from_excel(arq_name):
     
 def read_queue_data(name_column,email_column,age_column,age_filter,i):
     
+    #Tenho que fazer ler do ultimo ao primeiro e ir removendo as linhas
+
     filtered =0
     sent =0
     failed =0
