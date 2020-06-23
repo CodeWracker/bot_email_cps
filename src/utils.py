@@ -4,12 +4,14 @@ import xlrd
 import csv
 import os
 
+#armazena os dados de onde estão as colunas dos dados selecionados
 def set_data_storage(name_column, email_column, age_column,age_filter,i):
     data_file = open('src/data/{}/data.csv'.format(str(i)), 'w')
     wr = csv.writer(data_file, quoting=csv.QUOTE_ALL)
     wr.writerow([name_column, email_column, age_column,age_filter])
     data_file.close()
 
+#le os dados selecionados previamente
 def read_data_storage(i):
     log_reading_data(i)
     data_file = open('src/data/{}/data.csv'.format(str(i)), 'r')
@@ -20,6 +22,7 @@ def read_data_storage(i):
             data.append(int(column))
         return data
 
+#cria uma tabela para armazenar os envios que deram errados
 def create_error_csv(i):
     error_file = open('src/data/{}/error.csv'.format(str(i)), 'w')
     wr = csv.writer(error_file, quoting=csv.QUOTE_ALL)
@@ -39,6 +42,7 @@ def create_error_csv(i):
     f.close()
     return [int(name_column),int(email_column),int(age_column) ,int(i)]
 
+#le o xlsx e transforma numa fila em csv para poder trabalhar no python
 def csv_from_excel(arq_name):
     i = 0
     created = False
@@ -58,10 +62,10 @@ def csv_from_excel(arq_name):
     queue_file.close()
     return create_error_csv(i)
     
-def read_queue_data(name_column,email_column,age_column,age_filter,i):
-    
-    #Tenho que fazer ler do ultimo ao primeiro e ir removendo as linhas
-    
+#le a lista de itens que faltam ser enviados
+#envia o email e e remove a linha da lista
+#caso não consiga enviar o email, remove da lista e manda adicionar na tabela error
+def read_queue_data(name_column,email_column,age_column,age_filter,i):    
     filtered =0
     sent =0
     failed =0
@@ -111,6 +115,7 @@ def read_queue_data(name_column,email_column,age_column,age_filter,i):
     
     return [filtered,sent,failed]
 
+#atualiza a fila de espera removendo a linha que foi trabalhada no momento
 def update_queue(i,data,row):
     print("Removendo item da fila...")
     file = open("src/data/"+str(i)+'/queue.csv', 'w')
@@ -122,6 +127,7 @@ def update_queue(i,data,row):
     file.close()
     return data
 
+#faz o filtro e se passar manda para enviar o email
 def check_valid_email(name,email,age,age_filter):
     if age<age_filter:
         print("Muito novo para receber o email")
@@ -129,6 +135,7 @@ def check_valid_email(name,email,age,age_filter):
     else:
         return mail(name,email)
 
+#adiciona o item enviado na tabela de erro
 def add_failed_list(row,i):
     error_file = open('src/data/{}/error.csv'.format(str(i)), 'r')
     data = []
