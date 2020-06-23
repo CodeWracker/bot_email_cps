@@ -1,8 +1,9 @@
 from send_email import *
 from text_responses import *
-import xlrd
+import pandas as pd
 import csv
 import os
+import datetime
 
 #armazena os dados de onde estão as colunas dos dados selecionados
 def set_data_storage(name_column, email_column, age_column,age_filter,i):
@@ -52,14 +53,8 @@ def csv_from_excel(arq_name):
             created = True
         except:
             i = i +1
-    wb = xlrd.open_workbook("src/{}.xlsx".format(arq_name))
-    sh = wb.sheet_by_name('Plan1')
-    queue_file = open('src/data/{}/queue.csv'.format(str(i)), 'w')
-    wr = csv.writer(queue_file, quoting=csv.QUOTE_ALL)
-
-    for rownum in range(sh.nrows):
-        wr.writerow(sh.row_values(rownum))
-    queue_file.close()
+    read_file = pd.read_excel ("src/{}.xlsx".format(arq_name))
+    read_file.to_csv ('src/data/{}/queue.csv'.format(str(i)), index = None, header=True)
     return create_error_csv(i)
     
 #le a lista de itens que faltam ser enviados
@@ -84,9 +79,10 @@ def read_queue_data(name_column,email_column,age_column,age_filter,i):
             try:
                 name = str(row[name_column])
                 email = str(row[email_column])
-                age = row[age_column].split('.')[0]
+                age = row[age_column].split('-')[0]
+                
                 int(age)
-                print("nome: " + name + " / email: "+ email+ " / idade: "+ age)
+                print("nome: " + name + " / email: "+ email+ " / nascimento: "+ age)
 
                 
                     #Retorno:
@@ -107,11 +103,10 @@ def read_queue_data(name_column,email_column,age_column,age_filter,i):
                     failed=failed+1
                     update_data = update_queue(i,update_data,row)
                     add_failed_list(row,i)
-                
             except ValueError:
                 print("Lido!")
             print("")
-    
+            
     
     return [filtered,sent,failed]
 
@@ -131,7 +126,7 @@ def update_queue(i,data,row):
 def check_valid_email(name,email,age,age_filter):
 
     #a idade vai vir por data, tem que trabalhar esse dado
-    if age<age_filter:
+    if age>age_filter:
         print("Muito novo para receber o email")
         return 0
     else:
