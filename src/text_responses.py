@@ -14,3 +14,8 @@ def log_results(filtered,sent,failed):
     print("Erro ao enviar: "+str(failed))
     print("Os eventuais erros, por enquanto, devem ser tratados manualmente")
     log_line()
+
+def log_reading_data(run_number):
+    print("")
+    print("Lendo dados da execucao numero "+str(run_number))
+    print("")

@@ -1,9 +1,24 @@
 from send_email import *
-
+from text_responses import *
 import xlrd
 import csv
 import os
 
+def set_data_storage(name_column, email_column, age_column,age_filter,i):
+    data_file = open('src/data/{}/data.csv'.format(str(i)), 'w')
+    wr = csv.writer(data_file, quoting=csv.QUOTE_ALL)
+    wr.writerow([name_column, email_column, age_column,age_filter])
+    data_file.close()
+
+def read_data_storage(i):
+    log_reading_data(i)
+    data_file = open('src/data/{}/data.csv'.format(str(i)), 'r')
+    reader = csv.reader(data_file)
+    data = []
+    for row in reader:
+        for column in row:
+            data.append(int(column))
+        return data
 
 def create_error_csv(i):
     error_file = open('src/data/{}/error.csv'.format(str(i)), 'w')
