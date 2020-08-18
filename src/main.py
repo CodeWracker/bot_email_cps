@@ -2,7 +2,7 @@ from utils import *
 from text_responses import *
 
 log_start_configuration()
-caso = int(input("digite 1 para criar m caso novo e 2 para tentar um anterior: "))
+caso = int(input("digite 1 para criar um caso novo e 2 para tentar um anterior: "))
 if(caso==1):
     file_name = input("Digite o nome do arquivo excel(sem o .xlsx): ")
     [name_column, email_column, age_column,run_number] = csv_from_excel(file_name)

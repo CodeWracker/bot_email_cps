@@ -7,7 +7,7 @@ import datetime
 
 #armazena os dados de onde estão as colunas dos dados selecionados
 def set_data_storage(name_column, email_column, age_column,age_filter,i):
-    data_file = open('src/data/{}/data.csv'.format(str(i)), 'w')
+    data_file = open('data/{}/data.csv'.format(str(i)), 'w')
     wr = csv.writer(data_file, quoting=csv.QUOTE_ALL)
     wr.writerow([name_column, email_column, age_column,age_filter])
     data_file.close()
@@ -15,7 +15,7 @@ def set_data_storage(name_column, email_column, age_column,age_filter,i):
 #le os dados selecionados previamente
 def read_data_storage(i):
     log_reading_data(i)
-    data_file = open('src/data/{}/data.csv'.format(str(i)), 'r')
+    data_file = open('data/{}/data.csv'.format(str(i)), 'r')
     reader = csv.reader(data_file)
     data = []
     for row in reader:
@@ -25,9 +25,9 @@ def read_data_storage(i):
 
 #cria uma tabela para armazenar os envios que deram errados
 def create_error_csv(i):
-    error_file = open('src/data/{}/error.csv'.format(str(i)), 'w')
+    error_file = open('data/{}/error.csv'.format(str(i)), 'w')
     wr = csv.writer(error_file, quoting=csv.QUOTE_ALL)
-    f = open("src/data/"+str(i)+'/queue.csv', 'r')
+    f = open("data/"+str(i)+'/queue.csv', 'r')
     reader = csv.reader(f)
     index = 0
     for row in reader:
@@ -49,12 +49,12 @@ def csv_from_excel(arq_name):
     created = False
     while(not created):
         try:
-            os.mkdir("src/data/{}".format(str(i)))
+            os.mkdir("data/{}".format(str(i)))
             created = True
         except:
             i = i +1
-    read_file = pd.read_excel ("src/{}.xlsx".format(arq_name))
-    read_file.to_csv ('src/data/{}/queue.csv'.format(str(i)), index = None, header=True)
+    read_file = pd.read_excel ("{}.xlsx".format(arq_name))
+    read_file.to_csv ('data/{}/queue.csv'.format(str(i)), index = None, header=True)
     return create_error_csv(i)
     
 #le a lista de itens que faltam ser enviados
@@ -64,7 +64,7 @@ def read_queue_data(name_column,email_column,age_column,age_filter,i):
     filtered =0
     sent =0
     failed =0
-    f = open("src/data/"+str(i)+'/queue.csv', 'r')
+    f = open("data/"+str(i)+'/queue.csv', 'r')
     reader = csv.reader(f)
     
     data = []
@@ -113,7 +113,7 @@ def read_queue_data(name_column,email_column,age_column,age_filter,i):
 #atualiza a fila de espera removendo a linha que foi trabalhada no momento
 def update_queue(i,data,row):
     print("Removendo item da fila...")
-    file = open("src/data/"+str(i)+'/queue.csv', 'w')
+    file = open("data/"+str(i)+'/queue.csv', 'w')
     wr = csv.writer(file, quoting=csv.QUOTE_ALL)
     for line in data:
         if(line !=row) and line !=[]:
@@ -134,7 +134,7 @@ def check_valid_email(name,email,age,age_filter):
 
 #adiciona o item enviado na tabela de erro
 def add_failed_list(row,i):
-    error_file = open('src/data/{}/error.csv'.format(str(i)), 'r')
+    error_file = open('data/{}/error.csv'.format(str(i)), 'r')
     data = []
     rd = csv.reader(error_file)
     for rw in rd:
@@ -142,7 +142,7 @@ def add_failed_list(row,i):
     data.append(row)
     error_file.close()
 
-    error_file = open('src/data/{}/error.csv'.format(str(i)), 'w')
+    error_file = open('data/{}/error.csv'.format(str(i)), 'w')
     wr = csv.writer(error_file, quoting=csv.QUOTE_ALL)
     for rw in data:
         if(rw!=[]):
