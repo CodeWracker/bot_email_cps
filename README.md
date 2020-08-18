@@ -23,4 +23,7 @@ A lista de espera é gerada pegando as informações das colunas de referencia d
 
 #### Prints de execução
 
-- colocar os prints aqui -
+![alt text](https://raw.githubusercontent.com/CodeWracker/bot_email_cps/master/Documenta%C3%A7%C3%A3o/printTudo.png)
+![alt text](https://raw.githubusercontent.com/CodeWracker/bot_email_cps/master/Documenta%C3%A7%C3%A3o/printConfig.png)
+![alt text](https://raw.githubusercontent.com/CodeWracker/bot_email_cps/master/Documenta%C3%A7%C3%A3o/printEnvios.png)
+![alt text](https://raw.githubusercontent.com/CodeWracker/bot_email_cps/master/Documenta%C3%A7%C3%A3o/printResultados.png)
