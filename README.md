@@ -7,7 +7,7 @@ Um programa feito em python para enviar emails elaborados em HTML+CSS simples pa
 
 ### Diagrama do funcionamento Básico
 
-- inserir o flow3.png aqui -
+![alt text](https://raw.githubusercontent.com/CodeWracker/bot_email_cps/master/Documenta%C3%A7%C3%A3o/diagramas/flow3.png)
 
 ### Funcionamento
 
