@@ -32,58 +32,33 @@ def send_email(to, subject, msg):
 
 html = """\
                 <html>
-  <head>
-    <style>
-        {}
-    </style>
-    <style>
-        {}
-    </style>
-  </head>
+<style type="text/css">
+    {}
+</style>
+
 <body>
-    <div class="container">
-        <div class="col-md-8>
-            <div class="myCard" >
-                <img src="https://img.freepik.com/fotos-gratis/dia-mundial-do-livro-fundo-do-livro_73944-11711.jpg?size=626&ext=jpg" style="max-width:100%;
-                height:auto; self-align:justify"  alt="..." >
-                <div class="card-body">
-                    <h5 class="card-title">Prezado(a) {}.</h5>
-                    <div class="row">
-                            <p style="text-align: justify;" >
-                            Meu nome é Rosemeire de Fátima Ferraz, sou docente locada na
-                            Etec de Poá, atualmente desenvolvendo a função de
-                            Coordenadora de Projetos na Cetec Capacitações –
-                            Administração Central.
-                        </br> Estou fazendo meus estudos de
-                            Mestrado em Psicogerontologia e meu tema de estudo é
-                            <b>ENVELHECIMENTO E TRABALHO DOCENTE: Motivos para
-                            permanecer no trabalho mesmo após a aposentadoria</b> Para está pesquisa preciso que professores em idade
-                            madura (acima de 45 anos) e aposentados que estejam ainda na
-                            atividade docente, seja em sala de aula ou desenvolvendo
-                            outras funções, participem respondendo a pesquisa.
-                        </br>Sua contribuição é muito valiosa para que seja possível identificar situações que proporcionem uma melhoria da qualidade de vida docente e, assim futuramente, propor para a nossa instituição, projetos que auxiliem na preparação da aposentadoria.
-                        </br>Você precisará de apenas 10
-                            minutos para responder a 2 questionários: Sociodemográfico e
-                            a Escala de Motivação Docente.</br> Conto com sua participação!</br>
-                            Desde já agradeço sua atenção e contribuição!
-                        </p>
-                    </div>
-                    <div class="row">
-                
-                        <a
-                            href="https://google.com"
-                            class="myButton"
-                            >Ir para o questionário</a
-                        >
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
     </div>
-        
-        
-    
-  </body>
+    <div>
+        <div class="myheader">
+            <h2>Convite Para Pesquisa</h2>
+        </div>
+        <div class="corpo">
+            <div class="img"><img src="https://image.freepik.com/fotos-gratis/papel-de-caderno-em-branco-lapis-e-oculos-no-local-de-trabalho_151013-11254.jpg"
+                 alt="..."></div>
+            <p class="fontcod">Olá Caro(a) colega! </p>
+            <p class="fontnormal">
+            Meu nome é Rosemeire de Fátima Ferraz, sou docente do Centro Paula Souza,  lotada na Etec de Poá, atualmente desenvolvendo a função de coordenadora de Projetos na Cetec Capacitações. </br>
+            Iniciei meus estudos de mestrado profissional em janeiro/2019 com o título de pesquisa <b>ENVELHECIMENTO E TRABALHO DOCENTE: Motivos para permanecer no trabalho mesmo após a aposentadoria</b>,  entretanto, em 13/11/2019 foi publicado uma emenda constitucional 103, em que o servidor que requerer a aposentadoria junto ao INSS, a partir desta data e quando a aposentadoria for concedida terá que romper o vínculo empregatício. Mesmo assim, sendo de grande importância os estudos em desenvolvimento, preciso do apoio dos colegas para concluir minha pesquisa e finalizar meus estudos. 
+            Portanto, estou lhe convidando a acessar o link abaixo, se desejar, para que possa ler o Termo de Consentimento Livre e Esclarecido e 2 questionários:  Sociodemográfico e a Escala de Motivação Docente. 
+            Conto com sua participação!
+            Desde já agradeço sua atenção e contribuição!
+            <div class="button"><a href='https://forms.gle/cg5hkuFYFFibMz6y5'>Acessar link</a></div>
+            </p>
+        </div>
+</body>
+
 </html>
-                """.format(message.BOOTSTRAP,message.MY_STYLE,"rodrigo")
-email_request = send_email("meire.psicologa@hotmail.com", 'Minha Pesquisa de Mestrado', html)
+                """.format(message.MY_STYLE)
+email_request = send_email("rosemeire.ferraz@cps.sp.gov.br", 'Convite para minha Pesquisade Mestrado', html)
