@@ -26,7 +26,7 @@ def read_data_storage(i):
 #cria uma tabela para armazenar os envios que deram errados
 def create_error_csv(i):
     #os.mkdir("data/{}/error.csv".format(str(i)))
-    error_file = open("data/{}/".format(str(i))+"error.csv", "w")
+    error_file = open("data/{}/".format(str(i))+"error.csv", "w", encoding='utf-8')
     wr = csv.writer(error_file, quoting=csv.QUOTE_ALL)
     f = open("data/"+str(i)+'/queue.csv', 'r')
     reader = csv.reader(f)
