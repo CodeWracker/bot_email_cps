@@ -15,7 +15,7 @@ def set_data_storage(name_column, email_column,i):
 #le os dados selecionados previamente
 def read_data_storage(i):
     log_reading_data(i)
-    data_file = open('data/{}/data.csv'.format(str(i)), 'r')
+    data_file = open('data/{}/data.csv'.format(str(i)), 'r', encoding='utf-8')
     reader = csv.reader(data_file)
     data = []
     for row in reader:
