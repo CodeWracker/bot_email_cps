@@ -83,7 +83,7 @@ def read_queue_data(name_column,email_column,i):
     filtered =0
     sent =0
     failed =0
-    f = open("data/"+str(i)+'/queue.csv', 'r')
+    f = open("data/"+str(i)+'/queue.csv', 'r', encoding='utf-8')
     reader = csv.reader(f)
     
     data = []
