@@ -157,7 +157,7 @@ def check_valid_email(name,email,i):
         for rw in range(1,len(data),1):
         
             row = data[rw]
-            print(row[1])
+            #print(row[1])
             if(str(row[1])==str(email)):
                 achou = True
         if '@cps' in str(email).lower():
