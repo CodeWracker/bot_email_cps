@@ -160,7 +160,9 @@ def check_valid_email(name,email,i):
             print(row[1])
             if(str(row[1])==str(email)):
                 achou = True
-
+        if '@cps' in str(email).lower():
+            print("dominio @cps bloqueado")
+            return 0
         if achou:
             print("email bloqueado")
             return 0
