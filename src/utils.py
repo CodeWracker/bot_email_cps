@@ -7,7 +7,7 @@ import datetime
 
 #armazena os dados de onde estão as colunas dos dados selecionados
 def set_data_storage(name_column, email_column,i):
-    data_file = open('data/{}/data.csv'.format(str(i)), 'w')
+    data_file = open('data/{}/data.csv'.format(str(i)), 'w', encoding='utf-8')
     wr = csv.writer(data_file, quoting=csv.QUOTE_ALL)
     wr.writerow([name_column, email_column])
     data_file.close()
