@@ -1,6 +1,6 @@
 # Sobre
 
-Um bot para enviar os emails para o Mestrado de Rosemeire para os membros do CPS
+Um bot para enviar os emails para os membros do CPS
 Um programa feito em python para enviar emails elaborados em HTML+CSS simples para uma lista predeterminada de emails, salva em um arquivo .xlsx
 
 ## Documentação
